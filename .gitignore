@@ -1,0 +1,16 @@
+# Local research and generated packages
+/work/
+/outputs/
+*.zip
+
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+
+# OS and Python cache files
+.DS_Store
+Thumbs.db
+Desktop.ini
+__pycache__/
+*.pyc

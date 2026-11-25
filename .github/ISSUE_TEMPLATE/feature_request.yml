@@ -1,0 +1,23 @@
+name: 改进建议 / Feature request
+description: 用一个具体场景说明希望改进的行为。
+title: "[Idea] "
+body:
+  - type: textarea
+    id: scenario
+    attributes:
+      label: 使用场景 / Scenario
+      description: 你想完成什么？目前哪一步不够好？
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: 希望得到的结果 / Desired outcome
+      description: 说明实际改善，不必预先确定工具或实现。
+    validations:
+      required: true
+  - type: textarea
+    id: tradeoffs
+    attributes:
+      label: 适用范围与取舍 / Scope and tradeoffs
+      description: 是否只适用于某类用户或任务？是否会增加提问、调用或维护成本？

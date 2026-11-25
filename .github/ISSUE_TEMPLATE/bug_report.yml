@@ -1,0 +1,41 @@
+name: 问题反馈 / Bug report
+description: 报告提问、搜索、核验或结果解释中的具体问题。
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请提供最小必要的脱敏信息。不要提交凭据、完整私密聊天或未公开业务资料。
+  - type: input
+    id: environment
+    attributes:
+      label: 使用环境 / Environment
+      description: 宿主、Skill 提交或下载日期，以及是否有联网检索能力。
+    validations:
+      required: true
+  - type: textarea
+    id: request
+    attributes:
+      label: 用户请求与关键前文 / Request and relevant context
+      description: 保留影响判断的目标、已回答问题和明确条件即可。
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为 / What happened
+      description: 例如重复问已回答的问题、遗漏一类候选、把商业版能力当成开源能力。
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望行为 / Expected behavior
+      description: 描述可观察的差异，不必先提出具体规则修改。
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 相关来源或补充信息 / Evidence
+      description: 可提供官方文档、相关版本或脱敏后的结果片段。
