@@ -8,7 +8,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![Format: Agent Skill](https://img.shields.io/badge/Format-Agent%20Skill-5263EB)
-![Designed for: Codex](https://img.shields.io/badge/Designed%20for-Codex-222222)
+![Designed for: AI Agents](https://img.shields.io/badge/Designed%20for-AI%20Agents-222222)
 
 **简体中文** · [English](README.en.md)
 
@@ -20,12 +20,14 @@
 
 ## 它能帮你做什么？
 
-Open Source Scout 是一个面向 Codex 的开源项目检索与选型 Skill。它把“帮我找个开源项目”推进为一份能理解、能比较、能追溯依据的建议。
+Open Source Scout 是一个面向各类 AI Agent 的通用开源项目检索与选型 Skill。它把“帮我找个开源项目”推进为一份能理解、能比较、能追溯依据的建议。
+
+你可以在支持 Skills 的 Agent 中安装它，也可以让能够读取文件的 Agent 加载它的规则，或将它接入自己开发的 Agent。核心流程以 Markdown 编写，不绑定特定模型、客户端或 Agent 框架。
 
 你不必先写好需求文档。只有一个想法时，它会用选择题帮助你找到方向；已经说清楚用途时，就进入检索。结果中会解释每个项目做什么、如何用于你的场景，以及需要你自己补齐哪些工作。
 
 ```text
-使用 $open-source-scout 帮我找一个开源的长期记忆模块。
+请使用 open-source-scout Skill 帮我找一个开源的长期记忆模块。
 我想给自己的 Agent 使用，但还没想清楚具体方案。
 ```
 
@@ -48,15 +50,30 @@ Open Source Scout 是一个面向 Codex 的开源项目检索与选型 Skill。�
 
 ## 快速开始
 
-### 1. 放入 Codex 的技能目录
+### 1. 获取 Skill
 
-从 [GitHub 仓库](https://github.com/zHaooJ/open-source-scout) 下载，或克隆到本地：
+从 [GitHub 仓库](https://github.com/zHaooJ/open-source-scout-skill) 下载，或克隆到本地：
 
 ```bash
-git clone https://github.com/zHaooJ/open-source-scout.git
+git clone https://github.com/zHaooJ/open-source-scout-skill.git open-source-scout
 ```
 
-将包含 `SKILL.md` 的 `open-source-scout` 目录放入个人技能目录。
+核心文件是 `SKILL.md` 和 `references/`，请保持它们的相对位置。完整仓库也可以一起复制；介绍文档无需每次加载。`agents/openai.yaml` 是可选的 Codex 展示元数据，其他 Agent 可忽略。
+
+### 2. 接入你使用的 Agent
+
+| Agent 的接入方式 | 怎样使用 |
+| --- | --- |
+| 支持 `SKILL.md` / Skills | 按宿主的技能安装机制导入 `open-source-scout` 目录，再用其技能调用方式启动 |
+| 能读取本地或工作区文件 | 将目录放到 Agent 可访问的位置，明确要求读取 `SKILL.md`，并按其中指引读取 `references/` |
+| 自己开发的 Agent | 将 `SKILL.md` 作为任务规则入口，按阶段加载参考文档，接入搜索、来源读取和用户问答能力 |
+
+不同宿主的安装目录、调用语法和工具接口可能不同。下面的自然语言示例用于表达意图；使用前需完成规则加载或技能安装。
+
+<details>
+<summary>安装示例：Codex</summary>
+
+将包含 `SKILL.md` 的 `open-source-scout` 目录放入 Codex 的个人技能目录。
 
 | 系统 | 默认路径 |
 | --- | --- |
@@ -75,25 +92,33 @@ skills/
     └── references/
 ```
 
-完整仓库可以一起复制；实际运行所需的是 `SKILL.md`、`agents/` 和 `references/`。新增介绍文档不需要在每次调用时加载。
+在 Codex 中，可以用 `$open-source-scout` 调用。未被识别时，先确认目录名和 `SKILL.md` 的位置，再尝试新建会话或重启客户端刷新技能发现。具体加载方式以所用 Codex 版本为准。
 
-### 2. 在聊天中调用
+</details>
+
+### 3. 在聊天中使用
 
 ```text
-使用 $open-source-scout 帮我找几个开源 Agent harness。
+请使用 open-source-scout Skill 帮我找几个开源 Agent harness。
 我要开发自己的通用 Agent，语言暂不限。
 ```
 
 也可以直接给出比较要求：
 
 ```text
-使用 $open-source-scout 比较我提供的这几个仓库。
+请使用 open-source-scout Skill 比较我提供的这几个仓库。
 重点看是否能自托管、开源版功能，以及接入现有系统的工作量。
 ```
 
-未被识别时，先确认目录名、`SKILL.md` 的位置，再尝试新建会话或重启客户端刷新技能发现。具体加载方式以所用 Codex 版本为准。
+对于通过文件接入的 Agent，可以这样开始（路径替换为实际位置）：
 
-### 3. 根据需要补充选择
+```text
+请读取工作区中的 open-source-scout/SKILL.md，
+并按其中指引读取 references/ 下的相关文档，使用这套流程帮我寻找开源项目。
+我的需求是……
+```
+
+### 4. 根据需要补充选择
 
 关键用途不明确时，Skill 会先提问。你可以选择一个方向、自由补充，或说“暂不确定，先给我看几条路线”。已经明确的条件会沿用，不必每次重填。
 
@@ -164,7 +189,7 @@ flowchart TD
 - **这是指导 Agent 工作的 Skill。** 仓库本身不包含独立搜索引擎、模型服务或项目索引。
 - **实时检索需要宿主提供联网能力。** 可使用公开网页搜索、仓库连接器和官方文档读取等工具；没有固定 MCP、API Key 或模型要求。
 - **没有联网能力时仍能澄清需求、分析给定材料。** 结果会注明范围，不能称为实时搜索或最新核验。
-- **当前以 Codex 为主要使用入口。** 其他支持 `SKILL.md` 的宿主可以评估适配，但本仓库不声称已验证其兼容性。
+- **面向各类 Agent，接入方式由宿主决定。** 宿主需能加载规则和参考文档，并支持多轮对话；选择题可通过交互控件或普通文本呈现。本仓库未逐一验证所有宿主的自动发现与调用方式。
 - **搜索结果不等于运行成功。** 检索请求默认不包含安装候选、运行代码、部署或联系维护者；这些动作按实际授权另行开展。
 - **这是工作规则，不是结果保证。** 覆盖面和判断质量受模型、工具、资料可得性以及任务条件影响。
 
@@ -175,7 +200,7 @@ open-source-scout/
 ├── README.md                       中文首页与快速开始
 ├── README.en.md                    English overview
 ├── SKILL.md                        Skill 入口与核心规则
-├── agents/openai.yaml              Codex 展示信息与默认提示
+├── agents/openai.yaml              可选的 Codex 展示信息与默认提示
 ├── references/
 │   ├── intake.md                   动态需求访谈
 │   ├── search-and-evidence.md      检索与证据核验

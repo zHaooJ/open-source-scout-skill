@@ -2,16 +2,16 @@
 
 [返回首页](../README.md)
 
-这份目录已经按“仓库根目录就是 Skill 目录”的方式组织。项目仓库为 [zHaooJ/open-source-scout](https://github.com/zHaooJ/open-source-scout)。以下说明用于维护发布包，或发布你自己的 Fork。
+这份目录已经按“仓库根目录就是 Skill 目录”的方式组织。项目仓库为 [zHaooJ/open-source-scout-skill](https://github.com/zHaooJ/open-source-scout-skill)，Skill 名称为 `open-source-scout`。以下说明用于维护发布包，或发布你自己的 Fork。
 
 ## 仓库资料建议
 
 | 字段 | 建议内容 |
 | --- | --- |
-| Repository name | `open-source-scout` |
-| 中文介绍 | 用渐进选择题澄清需求，发现并核验开源项目，给出可追溯的比较与选型建议。 |
-| English description | A Codex skill for guided requirements, open-source project discovery, evidence checks, and practical comparisons. |
-| Topics | `codex`、`agent-skills`、`open-source`、`project-discovery`、`developer-tools` |
+| Repository name | `open-source-scout-skill` |
+| 中文介绍 | 面向各类 AI Agent，用渐进选择题澄清需求，发现并核验开源项目，给出可追溯的比较与选型建议。 |
+| English description | A reusable skill for AI agents: guided requirements, open-source project discovery, evidence checks, and practical comparisons. |
+| Topics | `ai-agents`、`agent-skills`、`codex`、`open-source`、`project-discovery`、`developer-tools` |
 | 首页 | 默认展示根目录 `README.md`，从中链接到 `README.en.md` |
 | License | 当前包采用 MIT，见根目录 `LICENSE` |
 
@@ -33,7 +33,7 @@
 
 ## 发布时核对
 
-- 名称仍为 `open-source-scout`，目录名、`SKILL.md` 的 `name` 和调用提示一致。
+- Skill 名称仍为 `open-source-scout`；按宿主机制安装时，确保目录名与 `SKILL.md` 的 `name` 一致。仓库名可以不同，调用语法以宿主为准。
 - 确认 MIT 是你准备采用的许可；若改用其他许可，同步 `LICENSE`、中英文首页及徽章。
 - 当前版权声明使用 `Open Source Scout contributors`；如需标注实际个人或组织，使用你有权声明的名称。
 - 设计参考链接保留，外部项目的许可没有被本仓库的 MIT 许可替代。

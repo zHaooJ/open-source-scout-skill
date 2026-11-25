@@ -13,9 +13,16 @@
 - MIT 许可证。
 - 公开仓库地址及中英文克隆说明。
 
+### Changed
+
+- 中英文 README 改为面向各类 AI Agent 的通用定位，补充 Skills 安装、文件加载和自建 Agent 三种接入方式。
+- 通用示例改用自然语言调用，Codex 安装与 `$open-source-scout` 语法保留为宿主示例。
+- 明确 `agents/openai.yaml` 为可选的 Codex 展示元数据，核心流程由 `SKILL.md` 和 `references/` 提供。
+- 同步对话示例和发布说明，仓库链接更新为 `zHaooJ/open-source-scout-skill`。
+
 ### Preserved
 
-- Skill 名称 `open-source-scout` 及 `$open-source-scout` 调用方式。
+- Skill 名称 `open-source-scout` 及 Codex 中的 `$open-source-scout` 调用方式。
 - 原有 `SKILL.md`、Codex 元数据及三份运行参考文档。
 
 此次整理补充仓库展示和协作内容，没有变更原有执行规则。
